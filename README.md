@@ -15,6 +15,13 @@ object, then import all the **Resource Definition Modules**. Once that is
 done, all the tasks will be available for Gulp to compose larger tasks,
 such as a build task that runs all other build tasks.
 
+Another thing that is often of importance to build scripts is some
+way to differentiate between development and production builds. It
+is common for this to be indicated on the command line as arguments to
+gulp. To this end, the main Gulpfile also parses the command line arguments
+and stores them on the global object. This way, all build modules can use
+this information to customize their function.
+
 # Using gulp-seed
 
 ## In a new project
