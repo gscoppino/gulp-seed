@@ -7,6 +7,7 @@ import gulp from 'gulp';
 
 const INPUT = path.join(global.paths.src, '...');
 const OUTPUT = path.join(global.paths.dest, '...');
+// Other constants, such as plugin configs
 
 function build_RESOURCENAME() {
     return gulp.src(INPUT)
@@ -22,3 +23,5 @@ export default build_RESOURCENAME;
 
 They can also do things with `global.args` if they wish, for branched
 execution.
+
+Sample Build Module on [Github](https://gist.github.com/gscoppino/857b8fee85135625c56b).
