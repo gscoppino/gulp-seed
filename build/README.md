@@ -19,3 +19,6 @@ gulp.task('watch:RESOURCENAME', ...);
 
 export default build_RESOURCENAME;
 ```
+
+They can also do things with `global.args` if they wish, for branched
+execution.
