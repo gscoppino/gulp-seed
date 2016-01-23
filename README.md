@@ -36,3 +36,22 @@ this information to customize their function.
 existing directory.
 3. Merge your `package.json`'s *devDependencies` with the ones specified here.
 4. Begin re-adapting your build steps as **Resource Definition Modules**.
+
+## Running the gulpfile
+
+**(Recommended)**
+
+Install Gulp globally in order to run the project gulpfile:
+`npm install -g gulp`
+
+**(Not Recommended)**
+
+Open `package.json` and create an npm script to run the project gulpfile
+using the local installation of gulp.
+```
+"scripts": {
+    "gulp": "gulp"
+}
+```
+Though this method works, it is not offically supported and may break
+in Gulp 4.x.
