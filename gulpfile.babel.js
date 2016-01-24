@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import path from 'path';
 import minimist from 'minimist';
+import browser_sync from 'browser-sync';
 
 
 // Input and Output folders
@@ -28,21 +29,30 @@ let config = {
 
 // Instantiate build modules.
 
-/** Example **/
-/**
+import MarkupFactory from './build/markup';
+import StylesFactory from './build/styles';
+import ScriptsFactory from './build/scripts';
 
-import RDMFactory from './build/RDM';
-let RDM = RDMFactory(config); // exposes RDM.build and RDM.watch
+let markup = MarkupFactory(config);
+let styles = StylesFactory(config);
+let scripts = ScriptsFactory(config);
 
-...
-...
-
-**/
-
+// Instantiate browser sync.
+let server = browser_sync.create();
 
 /** Compose Gulp Tasks **/
 
-gulp.task('build', []);
-gulp.task('watch', []);
+gulp.task('build', [markup.build, styles.build, scripts.build]);
+gulp.task('watch', [markup.watch, styles.watch, scripts.watch]);
+gulp.task('serve', ['watch'], function () {
+    server.init({
+        server: {
+            baseDir: config.paths.dest
+        }
+    });
+
+    gulp.watch(path.join(config.paths.dest, '**', '*'))
+        .on('change', server.reload);
+});
 gulp.task('test', []);
-gulp.task('default', []);
+gulp.task('default', ['build']);
