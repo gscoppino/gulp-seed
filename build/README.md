@@ -5,23 +5,28 @@ import gulp from 'gulp';
 // Other global imports
 // Local imports from ./utils
 
-const INPUT = path.join(global.paths.src, '...');
-const OUTPUT = path.join(global.paths.dest, '...');
-// Other constants, such as plugin configs
+export default function (config) {
+    const INPUT = path.join(config.paths.src, '...');
+    const OUTPUT = path.join(config.paths.dest, '...');
 
-function build_RESOURCENAME() {
-    return gulp.src(INPUT)
-        .pipe(...)
-        .pipe(gulp.dest(OUTPUT));
+    // Other constants, such as plugin configs
+
+    gulp.task('build:RESOURCENAME', function () {
+        return gulp.src(INPUT)
+            .pipe(...)
+            .pipe(gulp.dest(OUTPUT));
+    });
+
+    gulp.task('watch:RESOURCENAME', ...);
+
+    return {
+        build: 'build:RESOURCENAME',
+        watch: 'watch:RESOURCENAME'
+    };
 }
-
-gulp.task('build:RESOURCENAME', build_RESOURCENAME);
-gulp.task('watch:RESOURCENAME', ...);
-
-export default build_RESOURCENAME;
 ```
 
-They can also do things with `global.args` if they wish, for branched
+They can also do things with `config.argv` if they wish, for branched
 execution.
 
 Sample Build Module on [Github](https://gist.github.com/gscoppino/857b8fee85135625c56b).
