@@ -53,5 +53,5 @@ export default function (config) {
     return {
         build: 'build:scripts',
         watch: 'watch:scripts'
-    }
+    };
 }
