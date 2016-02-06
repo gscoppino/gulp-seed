@@ -56,7 +56,7 @@ export default function (config) {
 			// Begin tracking transformations for sourcemap creation
 			.pipe(sourcemaps.init())
 				// Compile SCSS->CSS + minify output
-				.pipe(sass(SASS_CONFIG))
+				.pipe(sass(SASS_CONFIG).on('error', sass.logError))
 				// Apply prefixes to CSS properties for modern web browsers
 				.pipe(autoprefixer(AUTOPREFIXER_CONFIG))
 				// Rename file stream
